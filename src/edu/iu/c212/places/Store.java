@@ -33,9 +33,7 @@ public class Store extends Place {
         }
     }
 
-    public  getStoreItems(){
 
-    }
 
     @Override
     void onEnter(User user) {
@@ -52,9 +50,11 @@ public class Store extends Place {
                 if (user.getInventory().size() == 0) {
                     ConsoleUtils.printToConsole("You don't have anything to sell!");
                 }
-                else {
-                    ConsoleUtils.printToConsole("What would you like to sell?");
+                else if(input.equals(StoreAction.LEAVE.toString())){
+                    break;
                 }
+
+
             }
         }
     }
