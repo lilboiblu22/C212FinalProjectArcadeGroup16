@@ -14,6 +14,10 @@ public class User {
       this.inventory = inventory;
    }
 
+   public User() {
+
+   }
+
    public String getUsername() {
       return username;
    }
@@ -29,6 +33,10 @@ public class User {
    public void setInventory(List<Item> inventory) {
       this.inventory = inventory;
    }
+
+   public void setUsername(String user){username = user;}
+
+   public void setBalance(double b){balance = b;}
 
    public void addItem(Item item) {
       this.inventory.add(item);
