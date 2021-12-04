@@ -8,6 +8,12 @@ import java.io.Console;
 
 import static edu.iu.c212.utils.ConsoleUtils.readLineFromConsole;
 
+/**
+ * Represents the Lobby, which you will enter at the beginning of the
+ * arcade and after exiting any other places.
+ *
+ * It should have a $0 entry fee.
+ */
 public class Store extends Place {
 
     enum StoreAction {
