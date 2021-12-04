@@ -39,8 +39,6 @@ public class Store extends Place {
         }
     }
 
-
-
     @Override
     void onEnter(User user) {
         while (true) {
@@ -52,7 +50,7 @@ public class Store extends Place {
             if (input.equals(StoreAction.BUY.toString())) {
 
             }
- else if (input.equals(StoreAction.SELL.toString())) {
+            else if (input.equals(StoreAction.SELL.toString())) {
                 if (user.getInventory().size() == 0) {
                     ConsoleUtils.printToConsole("You don't have anything to sell!");
                 }

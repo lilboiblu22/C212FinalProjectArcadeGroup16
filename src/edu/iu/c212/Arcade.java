@@ -19,7 +19,7 @@ public class Arcade implements IArcade {
 
     /**
      * As read by getUserSaveDataFromFile().
-     * Should contain currentUser.
+     * This should contain currentUser.
      */
     List<User> allUsers;
 
@@ -50,29 +50,17 @@ public class Arcade implements IArcade {
         // transitionArcadeState(the_lobby);
     }
 
-    /**
-     * This will call FileUtils.getUserDataFromFile, and use
-     * System.exit() to exit the program if an exception is thrown.
-     * @return a List of Users.
-     */
     @Override
     public List<User> getUserSaveDataFromFile() {
         // TODO
         return null;
     }
 
-    /**
-     * Call FileUtils.writeUserDataFromFile to write all users to the txt file.
-     */
     @Override
-    public void saveUserDataToFile() {
+    public void saveUsersToFile() {
         // TODO
     }
 
-    /**
-     * Attempt to transition the currentUser to the new place.
-     * @param newPlaceNameToGoTo a Place that the user wants to go.
-     */
     @Override
     public void transitionArcadeState(String newPlaceNameToGoTo) {
         // TODO
@@ -84,13 +72,11 @@ public class Arcade implements IArcade {
         // and enter the Place.
     }
 
-    /**
-     * Ask for User's name on entry to the Arcade.
-     * @return a User.
-     */
     @Override
     public User getCurrentUserOnArcadeEntry() {
         // TODO
+        // Ask for a username to be entered.
+
         // If the username is not contained in the users as read
         // from users.txt, a welcome message should be printed.
 
@@ -99,14 +85,9 @@ public class Arcade implements IArcade {
         return null;
     }
 
-    /**
-     * Return a List of all the Places in the Arcade.
-     * @return a List of Places.
-     */
     @Override
     public List<Place> getAllPlaces() {
         return allPlaces;
     }
-
 
 }
