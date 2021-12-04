@@ -14,7 +14,4 @@ public class Inventory extends Place {
         ConsoleUtils.printToConsole(user.getInventory().toString());
 
     }
-
-
-
 }

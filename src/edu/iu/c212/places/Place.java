@@ -11,23 +11,32 @@ public abstract class Place {
     /**
      * Reference to the Arcade the Place resides in
      */
-    Arcade Arcade;
+    Arcade arcade;
     /**
      * Cost for entering the Place
      */
      double entryFee;
 
-    // invoked when the Place is entered
+    /**
+     * What is invoked when the place is entered.
+     * @param user
+     */
      abstract void onEnter(User user);
 
+    /**
+     * Should return the place name, the entry fee,
+     * and whether the place is a Game or not.
+     * @return String formatted, name
+     */
      @Override
      public String toString(){
-         return getPlaceName() + ":" + entryFee;
+         return getPlaceName() + ": " + entryFee;
      }
 
      public String getPlaceName() {
          return placeName;
      }
+
      public String setPlaceName() {
          return placeName;
      }
