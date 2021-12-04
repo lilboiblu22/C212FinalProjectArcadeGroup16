@@ -90,4 +90,7 @@ public class Arcade implements IArcade {
         return allPlaces;
     }
 
+    public User getCurrentUser() {
+        return currentUser;
+    }
 }
