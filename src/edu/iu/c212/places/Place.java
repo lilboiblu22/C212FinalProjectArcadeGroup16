@@ -4,10 +4,20 @@ import edu.iu.c212.Arcade;
 import edu.iu.c212.models.User;
 
 public abstract class Place {
+    /**
+     * Name of the Place
+     */
      String placeName;
-     Arcade arcade;
+    /**
+     * Reference to the Arcade the Place resides in
+     */
+    Arcade Arcade;
+    /**
+     * Cost for entering the Place
+     */
      double entryFee;
 
+    // invoked when the Place is entered
      abstract void onEnter(User user);
 
      @Override
@@ -15,18 +25,18 @@ public abstract class Place {
          return getPlaceName() + ":" + entryFee;
      }
 
-     public String getPlaceName(){
+     public String getPlaceName() {
          return placeName;
      }
-     public String setPlaceName(){
+     public String setPlaceName() {
          return placeName;
      }
 
-     public double getEntryFee(){
+     public double getEntryFee() {
          return entryFee;
      }
 
-     public double setEntryFee(){
+     public double setEntryFee() {
          return entryFee;
      }
 

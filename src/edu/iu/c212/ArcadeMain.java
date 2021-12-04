@@ -5,10 +5,7 @@ import edu.iu.c212.models.User;
 
 public class ArcadeMain {
     public static void main(String[] args) {
-        //new Arcade();
-        User user = new User();
-        user.addItem(Item.ITEM_FIVE);
-        user.addItem(Item.ITEM_FIVE);
-        System.out.println(user.getInventory());
+        // instantiate the arcade object
+        Arcade funZone = new Arcade();
     }
 }

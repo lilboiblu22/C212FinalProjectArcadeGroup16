@@ -4,17 +4,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
+   /**
+    * Name of the User
+    */
    String username;
+   /**
+    * Balance of the User
+    */
    double balance;
 
+   /**
+    * Inventory of the User
+    */
    List<Item> inventory;
 
+   /**
+    * User Constructor
+    * @param username name of the User
+    * @param balance amount of money
+    * @param inventory List of Items
+    */
    public User(String username, double balance, List<Item> inventory) {
       this.username = username;
       this.balance = balance;
       this.inventory = inventory;
    }
 
+   /**
+    * User Constructor w/ no arguments.
+    */
    public User() {
       this.username = "username";
       this.balance = 0;
@@ -64,7 +82,5 @@ public class User {
    public void removeBalance(double amount) {
       this.balance -= amount;
    }
-
-
 
 }
