@@ -1,5 +1,6 @@
 package edu.iu.c212.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -14,8 +15,22 @@ public class User {
       this.inventory = inventory;
    }
 
+   public User() {
+      this.username = "username";
+      this.balance = 0;
+      this.inventory = new ArrayList<>();
+   }
+
+   public void setUsername(String username) {
+      this.username = username;
+   }
+
    public String getUsername() {
       return username;
+   }
+
+   public void setBalance(double balance) {
+      this.balance = balance;
    }
 
    public double getBalance() {

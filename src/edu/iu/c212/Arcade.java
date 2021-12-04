@@ -13,6 +13,4 @@ public interface Arcade {
     void transitionArcadeState(String newPlaceNameToGoTo);
 
     User getCurrentUserOnArcadeEntry();
-
-
 }
