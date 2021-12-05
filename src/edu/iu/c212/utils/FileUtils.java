@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FileUtils {
-    private static File file = new File("your-file-location-here");
+    private static final File file = new File("TextFiles/SaveData.txt");
 
     // line format:
     // user_name|balance|item1,item2,item3
@@ -23,18 +23,24 @@ public class FileUtils {
      * @param users The total list of all users
      */
     public static void writeUserDataToFile(List<User> users) throws IOException {
-        PrintWriter out = new PrintWriter(file);
-        for (User user : users) {
-            out.println(user.getUsername() +
-                    "|" + user.getBalance() +
-                    "|" + user.getInventory().toString());
-        }
+       try {
+           PrintWriter out = new PrintWriter(file);
+           for (User user : users) {
+               out.println(user.getUsername() +
+                       "|" + user.getBalance() +
+                       "|" + user.getInventory().toString());
+           }
+       }
+       catch (IOException e) {
+           System.out.println("Error writing to file");
+       }
     }
 
     /**
      * Read user data from the file you provided above. Return a list of Users
      */
     public static List<User> getUserDataFromFile() throws IOException {
+      try {
         List<User> users = new ArrayList<User>();
         Scanner in = new Scanner(file);
         while (in.hasNextLine()) {
@@ -76,5 +82,10 @@ public class FileUtils {
             user.setInventory(listOfItems);
         }
         return users;
+    }
+    catch (IOException e) {
+        System.out.println("Error reading from file");
+         }
+        return null;
     }
 }

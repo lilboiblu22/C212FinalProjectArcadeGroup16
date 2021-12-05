@@ -2,6 +2,8 @@ package edu.iu.c212.places.games;
 
 import edu.iu.c212.models.User;
 import edu.iu.c212.utils.ConsoleUtils;
+import edu.iu.c212.utils.FileUtils;
+import jdk.incubator.vector.VectorOperators;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -13,6 +15,9 @@ public class GuessTheNumberGame extends Game{
     public void play() {
 
     }
+   public static Boolean between1And100(Integer guess){
+        return (guess >= 0 && guess <= 100);
+    }
 
     @Override
     void onEnter(User user) {
@@ -22,21 +27,15 @@ public class GuessTheNumberGame extends Game{
       int randomNumber = random.nextInt(100);
         Scanner userInput = new Scanner(System.in);
         int guess = userInput.nextInt();
-        int enteredIndex = ConsoleUtils.readIntegerLineFromConsoleOrElseComplainAndRetry(between1And100(guess), "You need to enter a valid option") - 1;
-        if(enteredIndex == randomNumber){
+        int enteredGuess = ConsoleUtils.readIntegerLineFromConsoleOrElseComplainAndRetry(GuessTheNumberGame::between1And100, "Please enter a number between 0 and 100.");
+        if(guess == randomNumber){
             ConsoleUtils.printToConsole("You guessed the number! You won $10!");
-            user.addBalance(10);
+            user.addBalance(10.00);
+            FileUtils.writeToFile();
         }
     }
 
-    Function<Integer, Boolean> between1And100(int guess){
-                return (enterFunction) -> {
-            if(guess > 0 && guess < 100){
-                return true;
-            }
-            return false;
-        };
-    }
+
     public void guessTheNumber(){
 
     }

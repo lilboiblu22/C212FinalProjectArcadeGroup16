@@ -3,6 +3,7 @@ package edu.iu.c212;
 import edu.iu.c212.models.User;
 import edu.iu.c212.places.Place;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface IArcade {
@@ -11,12 +12,12 @@ public interface IArcade {
      * System.exit() to exit the program if an exception is thrown.
      * @return a List of Users.
      */
-    List<User> getUserSaveDataFromFile();
+    List<User> getUserSaveDataFromFile() throws IOException;
 
     /**
      * This should call FileUtils.writeUserDataFromFile to write all users to the txt file.
      */
-    void saveUsersToFile();
+    void saveUsersToFile() throws IOException;
 
 
     /**

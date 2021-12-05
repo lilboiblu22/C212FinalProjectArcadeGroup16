@@ -10,7 +10,9 @@ import edu.iu.c212.places.games.GuessTheNumberGame;
 import edu.iu.c212.places.games.TriviaGame;
 import edu.iu.c212.places.games.blackjack.BlackjackGame;
 import edu.iu.c212.places.games.hangman.HangmanGame;
+import edu.iu.c212.utils.FileUtils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,8 @@ public class Arcade implements IArcade {
      * Includes: Lobby, Guess the Number, Blackjack,
      *           Hangman, Trivia, Inventory, and Store
      */
+
+
     List<Place> allPlaces;
 
     /**
@@ -52,9 +56,9 @@ public class Arcade implements IArcade {
     }
 
     @Override
-    public List<User> getUserSaveDataFromFile() {
+    public List<User> getUserSaveDataFromFile() throws IOException {
         // TODO
-        return null;
+        return FileUtils.getUserDataFromFile();
     }
 
     @Override
