@@ -41,7 +41,7 @@ public class Arcade implements IArcade {
         allPlaces = new ArrayList<>();
         allPlaces.add(new Lobby());
         allPlaces.add(new GuessTheNumberGame());
-        allPlaces.add(new BlackjackGame());
+        allPlaces.add(new BlackjackGame(this));
         allPlaces.add(new HangmanGame());
         allPlaces.add(new TriviaGame());
         allPlaces.add(new Inventory());
