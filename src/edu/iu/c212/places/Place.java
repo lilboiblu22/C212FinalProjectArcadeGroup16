@@ -3,6 +3,8 @@ package edu.iu.c212.places;
 import edu.iu.c212.Arcade;
 import edu.iu.c212.models.User;
 
+import java.io.IOException;
+
 public abstract class Place {
     /**
      * Name of the Place
@@ -19,38 +21,41 @@ public abstract class Place {
 
     /**
      * What is invoked when the place is entered.
-     * @param user
+     * @param user the current User.
      */
-     abstract void onEnter(User user);
+    public abstract void onEnter(User user) throws IOException;
 
     /**
      * Should return the place name, the entry fee,
      * and whether the place is a Game or not.
      * @return String formatted, name
      */
+
      @Override
      public String toString(){
-         return getPlaceName() + ": " + entryFee + " " + isGame();
-     }
-
-    public boolean isGame(){
-        return true;
-    }
+         return getPlaceName() + ": " + entryFee; }
 
     public String getPlaceName() {
          return placeName;
      }
 
-     public String setPlaceName() {
-         return placeName;
+     public void setPlaceName(String placeName) {
+         this.placeName = placeName;
      }
 
      public double getEntryFee() {
          return entryFee;
      }
 
-     public double setEntryFee() {
-         return entryFee;
+     public void setEntryFee(double amount) {
+         this.entryFee = amount;
      }
 
+    public void setArcade(Arcade arcade) {
+        this.arcade = arcade;
+    }
+
+    public Arcade getArcade() {
+        return arcade;
+    }
 }

@@ -27,12 +27,9 @@ public class BlackjackGame extends Game {
 
 
     public BlackjackGame(Arcade arc) {
-
-    }
-
-    @Override
-    public void play() {
-
+        setArcade(arc);
+        setEntryFee(10);
+        setPlaceName("Blackjack");
     }
 
     public void bust() {
