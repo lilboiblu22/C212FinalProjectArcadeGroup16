@@ -5,6 +5,8 @@ import edu.iu.c212.places.Place;
 
 public abstract class Game extends Place {
 
+    //cost of entry goes inside constructor here.
+
     @Override
     public String toString() {
         return super.toString();

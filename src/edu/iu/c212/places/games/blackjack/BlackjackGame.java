@@ -38,6 +38,7 @@ public class BlackjackGame extends Game {
     public void bust() {
 
     }
+
     @Override
     public void onEnter(User user) {
         BlackjackPlayer player = new BlackjackPlayer();
