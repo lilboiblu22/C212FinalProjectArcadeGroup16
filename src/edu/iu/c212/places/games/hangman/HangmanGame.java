@@ -6,6 +6,7 @@ import edu.iu.c212.places.games.Game;
 import edu.iu.c212.utils.ConsoleUtils;
 import edu.iu.c212.utils.http.HttpUtils;
 
+import java.io.IOException;
 import java.util.*;
 
 public class HangmanGame extends Game implements IHangmanGame {
@@ -16,7 +17,7 @@ public class HangmanGame extends Game implements IHangmanGame {
     }
 
     @Override
-    public void onEnter(User user){
+    public void onEnter(User user) throws IOException {
         user.removeBalance(5);
         System.out.println("Welcome to the Hangman Game!");
         System.out.println("Here are the rules:");
