@@ -20,7 +20,7 @@ public class GuessTheNumberGame extends Game{
     }
 
     @Override
-    void onEnter(User user) {
+    public void onEnter(User user) {
       ConsoleUtils.printToConsole("Welcome to Guess The Number Game! You'll be guessing a number between 0 and 100.");
       ConsoleUtils.printToConsole("You'll get $10 if you guess the number within 5 tries. Otherwise, you get nothing.");
       Random random = new Random();

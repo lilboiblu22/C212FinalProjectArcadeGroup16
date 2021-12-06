@@ -3,6 +3,8 @@ package edu.iu.c212.places.games;
 import edu.iu.c212.models.User;
 import edu.iu.c212.places.Place;
 
+import java.io.IOException;
+
 public abstract class Game extends Place {
 
     //cost of entry goes inside constructor here.
@@ -43,5 +45,5 @@ public abstract class Game extends Place {
 //    void onEnter(User user) {
 //    }
 
-    public abstract void onEnter(User user);
+    public abstract void onEnter(User user) throws IOException, InterruptedException;
 }
