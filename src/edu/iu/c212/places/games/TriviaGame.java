@@ -13,12 +13,6 @@ import java.util.List;
 
 public class TriviaGame extends Game {
 
-
-    @Override
-    public void play() {
-
-    }
-
     @Override
     public void onEnter(User user) throws IOException, InterruptedException {
         ConsoleUtils.printToConsole("Welcome to C212 Trivia ! You'll get $2 for every correct a answer - there are 5 total questions in this trivia round.");
