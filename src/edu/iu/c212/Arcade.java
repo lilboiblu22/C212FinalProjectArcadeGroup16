@@ -1,4 +1,5 @@
 package edu.iu.c212;
+//Jon's dad tortures jon with his farts, call CPS.
 
 import edu.iu.c212.models.User;
 import edu.iu.c212.places.Inventory;
@@ -9,11 +10,17 @@ import edu.iu.c212.places.games.GuessTheNumberGame;
 import edu.iu.c212.places.games.TriviaGame;
 import edu.iu.c212.places.games.blackjack.BlackjackGame;
 import edu.iu.c212.places.games.hangman.HangmanGame;
+
 import edu.iu.c212.utils.ConsoleUtils;
 import edu.iu.c212.utils.FileUtils;
 
 import java.io.IOException;
 import java.sql.SQLOutput;
+
+//import edu.iu.c212.utils.FileUtils;
+
+//import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -33,6 +40,8 @@ public class Arcade implements IArcade {
      * Includes: Lobby, Guess the Number, Blackjack,
      *           Hangman, Trivia, Inventory, and Store
      */
+
+
     List<Place> allPlaces;
 
     /**
@@ -46,7 +55,7 @@ public class Arcade implements IArcade {
         // all places should take the arcade as an argument...
         allPlaces.add(new Lobby(this));
         allPlaces.add(new GuessTheNumberGame());
-        allPlaces.add(new BlackjackGame());
+        allPlaces.add(new BlackjackGame(this));
         allPlaces.add(new HangmanGame());
         allPlaces.add(new TriviaGame());
         allPlaces.add(new Inventory());
@@ -65,6 +74,11 @@ public class Arcade implements IArcade {
             System.exit(-1);
             return null;
         }
+
+    //public List<User> getUserSaveDataFromFile() throws IOException {
+        // TODO
+        //return FileUtils.getUserDataFromFile();
+
     }
 
     @Override

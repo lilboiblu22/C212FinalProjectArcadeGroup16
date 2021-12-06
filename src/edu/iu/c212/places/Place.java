@@ -30,10 +30,14 @@ public abstract class Place {
      */
      @Override
      public String toString(){
-         return getPlaceName() + ": " + entryFee;
+         return getPlaceName() + ": " + entryFee + " " + isGame();
      }
 
-     public String getPlaceName() {
+    public boolean isGame(){
+        return true;
+    }
+
+    public String getPlaceName() {
          return placeName;
      }
 
