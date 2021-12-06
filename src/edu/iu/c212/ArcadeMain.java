@@ -18,4 +18,5 @@ public class ArcadeMain {
         }
         ConsoleUtils.printMenuToConsole("Menu", ints, false);*/
     }
+
 }

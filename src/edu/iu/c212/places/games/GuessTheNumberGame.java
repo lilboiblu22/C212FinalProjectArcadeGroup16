@@ -3,7 +3,7 @@ package edu.iu.c212.places.games;
 import edu.iu.c212.models.User;
 import edu.iu.c212.utils.ConsoleUtils;
 import edu.iu.c212.utils.FileUtils;
-import jdk.incubator.vector.VectorOperators;
+//import jdk.incubator.vector.VectorOperators;
 
 import java.util.Random;
 import java.util.Scanner;

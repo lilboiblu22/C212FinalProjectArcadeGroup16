@@ -23,7 +23,7 @@ public class BlackjackGame extends Game {
     public static boolean isRunning;
 
     private Object lock;
-    private static Thread t;
+    public static Thread t;
 
 
     public BlackjackGame(Arcade arc) {
@@ -38,7 +38,7 @@ public class BlackjackGame extends Game {
     public void bust() {
 
     }
-
+    @Override
     public void onEnter(User user) {
         BlackjackPlayer player = new BlackjackPlayer();
         BlackjackDealer dealer = new BlackjackDealer();
@@ -84,10 +84,6 @@ public class BlackjackGame extends Game {
         });
         t.start();
 
-        try {
-            BlackjackGame.t.join();
-        } catch (InterruptedException ignored) {
-        }
         isRunning = true;
 
 

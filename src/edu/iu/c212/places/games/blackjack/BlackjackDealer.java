@@ -33,7 +33,6 @@ public class BlackjackDealer extends BlackjackParticipant {
     }
 
 
-
     public String getPartialHand () {
         return shownCard + "???";
 

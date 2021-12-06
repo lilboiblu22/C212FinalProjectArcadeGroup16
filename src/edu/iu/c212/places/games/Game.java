@@ -38,6 +38,8 @@ public abstract class Game extends Place {
     public abstract void play();
 
 
-    void onEnter(User user) {
-    }
+//    void onEnter(User user) {
+//    }
+
+    public abstract void onEnter(User user);
 }
