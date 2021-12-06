@@ -1,10 +1,13 @@
 package edu.iu.c212.places.games;
 
 import edu.iu.c212.models.User;
+import edu.iu.c212.places.Place;
 import edu.iu.c212.utils.ConsoleUtils;
 import edu.iu.c212.utils.FileUtils;
 import jdk.incubator.vector.VectorOperators;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.function.Function;
@@ -20,7 +23,7 @@ public class GuessTheNumberGame extends Game{
     }
 
     @Override
-    void onEnter(User user) {
+    void onEnter(User user) throws {
       ConsoleUtils.printToConsole("Welcome to Guess The Number Game! You'll be guessing a number between 0 and 100.");
       ConsoleUtils.printToConsole("You'll get $10 if you guess the number within 5 tries. Otherwise, you get nothing.");
       Random random = new Random();
@@ -31,12 +34,10 @@ public class GuessTheNumberGame extends Game{
         if(guess == randomNumber){
             ConsoleUtils.printToConsole("You guessed the number! You won $10!");
             user.addBalance(10.00);
-            FileUtils.writeToFile();
+            FileUtils.writeUserDataToFile();
         }
     }
 
 
-    public void guessTheNumber(){
 
-    }
 }
