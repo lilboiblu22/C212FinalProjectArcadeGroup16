@@ -1,5 +1,6 @@
 package edu.iu.c212.places;
 
+import edu.iu.c212.Arcade;
 import edu.iu.c212.models.Item;
 import edu.iu.c212.models.User;
 import edu.iu.c212.utils.ConsoleUtils;
@@ -19,6 +20,12 @@ import static edu.iu.c212.utils.ConsoleUtils.readLineFromConsole;
  * It should have a $0 entry fee.
  */
 public class Store extends Place {
+
+    public Store(Arcade arcade) {
+        setArcade(arcade);
+        setPlaceName("Store");
+        setEntryFee(0);
+    }
 
     enum StoreAction {
         BUY{
@@ -42,7 +49,7 @@ public class Store extends Place {
     }
 
     @Override
-    void onEnter(User user) {
+    public void onEnter(User user) {
         while (true) {
             List<StoreAction> storeActionList = new ArrayList<>();
             storeActionList.add(StoreAction.BUY); storeActionList.add(StoreAction.SELL);
@@ -52,10 +59,18 @@ public class Store extends Place {
                     storeActionList, true);
 
             switch (action) {
-                case BUY: buyMenu();
-                case SELL: sellMenu();
-                case LEAVE: return;
-                default:
+                case BUY: {
+                    buyMenu();
+                    break;
+                }
+                case SELL: {
+                    sellMenu();
+                    break;
+                }
+                case LEAVE: {
+                    arcade.transitionArcadeState("Lobby");
+                }
+                default: // won't ever execute bt dubs
                     System.out.println("Invalid input");
             }
         }
@@ -93,8 +108,8 @@ public class Store extends Place {
 
         List<Item> items = new ArrayList<>(Arrays.asList(Item.values()));
 
-        Item item = ConsoleUtils.printMenuToConsole("Which item would you like to buy?" +
-                Arrays.toString(Item.values()), items, true);
+        Item item = ConsoleUtils.printMenuToConsole("Which item would you like to buy?"
+                , items, true);
 
         if (arcade.getCurrentUser().getBalance() < item.getValue()) {
             System.out.println("You don't have enough money to buy this item. ");

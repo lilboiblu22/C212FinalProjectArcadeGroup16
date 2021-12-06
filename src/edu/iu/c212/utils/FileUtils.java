@@ -19,7 +19,6 @@ public class FileUtils {
 
     /**
      * Write user data to the file you provided above.
-     *
      * @param users The total list of all users
      */
     public static void writeUserDataToFile(List<User> users) throws IOException {
@@ -30,6 +29,7 @@ public class FileUtils {
                        "|" + user.getBalance() +
                        "|" + user.getInventory().toString());
            }
+           out.close();
        }
        catch (IOException e) {
            System.out.println("Error writing to file");
@@ -43,6 +43,8 @@ public class FileUtils {
       try {
         List<User> users = new ArrayList<User>();
         Scanner in = new Scanner(file);
+
+
         while (in.hasNextLine()) {
             // line format:
             // user_name|balance|item1,item2,item3
@@ -51,6 +53,7 @@ public class FileUtils {
             User user = new User();
             user.setUsername(line[0]);
             user.setBalance(Double.parseDouble(line[1]));
+            users.add(user);
             // items are stored like Name0: Price0, Name1: Price1, etc...
             // (2) break item information up into name and price
             String[] items = line[2].split(",");
@@ -81,11 +84,12 @@ public class FileUtils {
             }
             user.setInventory(listOfItems);
         }
+          in.close();
         return users;
     }
     catch (IOException e) {
-        System.out.println("Error reading from file");
+          System.out.println("Error reading from file");
+          return null;
          }
-        return null;
     }
 }
