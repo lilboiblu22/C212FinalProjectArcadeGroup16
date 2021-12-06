@@ -30,7 +30,7 @@ public interface IArcade {
      * Ask for User's name on entry to the Arcade.
      * @return a User.
      */
-    User getCurrentUserOnArcadeEntry();
+    User getUserOnArcadeEntry();
 
     /**
      * Return a List of all the Places in the Arcade.

@@ -31,6 +31,17 @@ public class User {
    }
 
    /**
+    * User Constructor w/ two arguments.
+    * @param username name of the User
+    * @param balance amount of money
+    */
+   public User(String username, double balance) {
+      this.username = username;
+      this.balance = balance;
+      this.inventory = new ArrayList<>();
+   }
+
+   /**
     * User Constructor w/ no arguments.
     */
    public User() {

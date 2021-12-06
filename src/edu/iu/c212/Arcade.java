@@ -10,11 +10,20 @@ import edu.iu.c212.places.games.GuessTheNumberGame;
 import edu.iu.c212.places.games.TriviaGame;
 import edu.iu.c212.places.games.blackjack.BlackjackGame;
 import edu.iu.c212.places.games.hangman.HangmanGame;
+
+import edu.iu.c212.utils.ConsoleUtils;
 import edu.iu.c212.utils.FileUtils;
 
 import java.io.IOException;
+import java.sql.SQLOutput;
+
+//import edu.iu.c212.utils.FileUtils;
+
+//import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 public class Arcade implements IArcade {
 
@@ -40,10 +49,11 @@ public class Arcade implements IArcade {
      */
     public Arcade() {
         // call getUserOnArcadeEntry and set currentUser.
-        getCurrentUserOnArcadeEntry();
+        currentUser = getUserOnArcadeEntry();
         // instantiate the place list
         allPlaces = new ArrayList<>();
-        allPlaces.add(new Lobby());
+        // all places should take the arcade as an argument...
+        allPlaces.add(new Lobby(this));
         allPlaces.add(new GuessTheNumberGame());
         allPlaces.add(new BlackjackGame(this));
         allPlaces.add(new HangmanGame());
@@ -51,43 +61,171 @@ public class Arcade implements IArcade {
         allPlaces.add(new Inventory());
         allPlaces.add(new Store());
         // transition the Arcade state to the Lobby
-        // TODO
-        // transitionArcadeState(the_lobby);
+        transitionArcadeState(allPlaces.get(0).getPlaceName());
     }
 
     @Override
-    public List<User> getUserSaveDataFromFile() throws IOException {
+    public List<User> getUserSaveDataFromFile() {
+        try {
+            return FileUtils.getUserDataFromFile();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+            System.exit(-1);
+            return null;
+        }
+
+    //public List<User> getUserSaveDataFromFile() throws IOException {
         // TODO
-        return FileUtils.getUserDataFromFile();
+        //return FileUtils.getUserDataFromFile();
+
     }
 
     @Override
     public void saveUsersToFile() {
-        // TODO
+        try {
+            FileUtils.writeUserDataToFile(allUsers);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void transitionArcadeState(String newPlaceNameToGoTo) {
-        // TODO
-        // If the user doesn't have enough money to go the Place,
-        // print a warning to the user and transition to the lobby.
+        // TO SEND THE USER TO THE PLACE, YOU HAVE
+        // TO CALL THE onEnter() METHOD OF THE PLACE...
 
-        // If the user has enough money to go to the Place,
-        // subtract the entry fee from the player, save to file,
-        // and enter the Place.
+        // USE A SWITCH STATEMENT.
+        // e.g. switch ("Lobby") should trigger the Lobby object's onEnter()
+        // and so on... :-)
+        switch (newPlaceNameToGoTo) {
+            case "Lobby": {
+                // must cast type from interface to class in order to access onEnter()
+                Lobby lobby = (Lobby) allPlaces.get(0);
+                // lobby has no entrance fee but this is what the
+                // general structure of the rest of the
+                // switch block should look like.
+                if (lobby.getEntryFee() > currentUser.getBalance()) {
+                    System.out.println("You don't have enough money to enter. ");
+                    lobby.onEnter(currentUser);
+                }
+                else {
+                    currentUser.removeBalance(lobby.getEntryFee());
+                    saveUsersToFile();
+                    lobby.onEnter(currentUser);
+                }
+            }
+            case "Guess the Number Game": {
+                GuessTheNumberGame guessTheNumberGame = (GuessTheNumberGame) allPlaces.get(1);
+                if (guessTheNumberGame.getEntryFee() > currentUser.getBalance()) {
+                    System.out.println("You don't have enough money to enter. ");
+                    Lobby lobby = (Lobby) allPlaces.get(0);
+                    lobby.onEnter(currentUser);
+                }
+                else {
+                    currentUser.removeBalance(guessTheNumberGame.getEntryFee());
+                    saveUsersToFile();
+                    // guessTheNumberGame.onEnter(currentUser);
+                }
+            }
+            case "Blackjack Game": {
+                BlackjackGame blackjackGame = (BlackjackGame) allPlaces.get(2);
+                if (blackjackGame.getEntryFee() > currentUser.getBalance()) {
+                    System.out.println("You don't have enough money to enter. ");
+                    Lobby lobby = (Lobby) allPlaces.get(0);
+                    lobby.onEnter(currentUser);
+                }
+                else {
+                    currentUser.removeBalance(blackjackGame.getEntryFee());
+                    saveUsersToFile();
+                    // blackjackGame.onEnter(currentUser);
+                }
+            }
+            case "Hangman Game": {
+                HangmanGame hangmanGame = (HangmanGame) allPlaces.get(3);
+                if (hangmanGame.getEntryFee() > currentUser.getBalance()) {
+                    System.out.println("You don't have enough money to enter. ");
+                    Lobby lobby = (Lobby) allPlaces.get(0);
+                    lobby.onEnter(currentUser);
+                }
+                else {
+                    currentUser.removeBalance(hangmanGame.getEntryFee());
+                    saveUsersToFile();
+                    // hangmanGame.onEnter(currentUser);
+                }
+            }
+            case "Trivia Game": {
+                TriviaGame triviaGame = (TriviaGame) allPlaces.get(4);
+                if (triviaGame.getEntryFee() > currentUser.getBalance()) {
+                    System.out.println("You don't have enough money to enter. ");
+                    Lobby lobby = (Lobby) allPlaces.get(0);
+                    lobby.onEnter(currentUser);
+                }
+                else {
+                    currentUser.removeBalance(triviaGame.getEntryFee());
+                    saveUsersToFile();
+                    // triviaGame.onEnter(currentUser);
+                }
+            }
+            case "Inventory": {
+                Inventory inventory = (Inventory) allPlaces.get(5);
+                if (inventory.getEntryFee() > currentUser.getBalance()) {
+                    System.out.println("You don't have enough money to enter. ");
+                    Lobby lobby = (Lobby) allPlaces.get(0);
+                    lobby.onEnter(currentUser);
+                }
+                else {
+                    currentUser.removeBalance(inventory.getEntryFee());
+                    saveUsersToFile();
+                    // inventory.onEnter(currentUser);
+                }
+            }
+            case "Store": {
+                Store store = (Store) allPlaces.get(6);
+                if (store.getEntryFee() > currentUser.getBalance()) {
+                    System.out.println("You don't have enough money to enter. ");
+                    Lobby lobby = (Lobby) allPlaces.get(0);
+                    lobby.onEnter(currentUser);
+                }
+                else {
+                    currentUser.removeBalance(store.getEntryFee());
+                    saveUsersToFile();
+                    // store.onEnter(currentUser);
+                }
+            }
+        }
     }
 
     @Override
-    public User getCurrentUserOnArcadeEntry() {
-        // TODO
-        // Ask for a username to be entered.
+    public User getUserOnArcadeEntry() {
+        System.out.print("Hello! Welcome to the arcade.\n" +
+                "What is your username?\n" +
+                "Name: ");
+        String name = ConsoleUtils.readLineFromConsole();
+        ListIterator<User> userListIterator = allUsers.listIterator();
+
+        while (userListIterator.hasNext()) {
+            User user = userListIterator.next();
+            if (name.equals(user.getUsername())) {
+                System.out.println("Welcome back, " + name + ". ");
+                return user;
+            }
+            else
+                userListIterator.next();
+        }
+
+        System.out.println("Welcome to the arcade, " + name + "! ");
+        User user = new User(name, 150.00);
+        allUsers.add(user);
+        saveUsersToFile();
+        return user;
 
         // If the username is not contained in the users as read
         // from users.txt, a welcome message should be printed.
 
         // If the username already exists,
         // a welcome back message should be printed.
-        return null;
     }
 
     @Override
