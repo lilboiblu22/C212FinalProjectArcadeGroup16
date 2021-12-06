@@ -11,8 +11,8 @@ import java.awt.event.WindowListener;
 import java.util.Random;
 
 public class BlackjackGame extends Game {
-    public static int[] handTotals = new int[10];
     private static int[] nums = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
+    protected int [] handTotals = new int[10];
     private static Random rand = new Random();
     private static boolean bust = false;
     private static JLabel totalsLabel;
@@ -26,8 +26,9 @@ public class BlackjackGame extends Game {
     public static Thread t;
 
 
-    public BlackjackGame(Arcade arc) {
-        setArcade(arc);
+    public BlackjackGame(Arcade arcade) {
+        super(arcade,"Blackjack",10);
+        setArcade(arcade);
         setEntryFee(10);
         setPlaceName("Blackjack");
     }
@@ -37,6 +38,10 @@ public class BlackjackGame extends Game {
     }
 
     @Override
+    public void play() {
+
+    }
+
     public void onEnter(User user) {
         BlackjackPlayer player = new BlackjackPlayer();
         BlackjackDealer dealer = new BlackjackDealer();
