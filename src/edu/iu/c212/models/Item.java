@@ -13,8 +13,17 @@ public enum Item {
     ITEM_TEN("name10", 3.0),
     ;
 
-    private String readableName;
-    private double value;
+    /**
+     * The name to display in the Inventory.
+     */
+    String readableName;
+
+    /**
+     * How much the item costs.
+     */
+    double value;
+
+
     Item(String readableName, double value) {
         this.readableName = readableName;
         this.value = value;
@@ -24,7 +33,9 @@ public enum Item {
         return readableName;
     }
 
-    public double getValue() {return value;}
+    public double getValue() {
+        return value;
+    }
 
     @Override
     public String toString() {
