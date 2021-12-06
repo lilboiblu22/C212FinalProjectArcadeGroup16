@@ -2,13 +2,22 @@ package edu.iu.c212.places.games.blackjack;
 
 public class BlackjackPlayer extends BlackjackParticipant {
     public BlackjackPlayer() {
-
+        this.handTotals = handTotals;
+        hit();
+        hit();
     }
     public String getCurrentTotalsString() {
+        if (handTotals[0] != handTotals[1] && handTotals[1] < 21) {
+
+            return ("Your first  hand total: " + handTotals[0] + "and your second hand total: " + handTotals[1]);
+        } else {
+            return("Your hand total: " + handTotals[0]);
+        }
 
     }
-    public int getBestTotal() {
 
+
+    @Override
+    public void hit() {
     }
-
 }
