@@ -17,9 +17,6 @@ public class BlackjackDealer extends BlackjackParticipant {
     }
 
     public String getPartialHand () {
-
-    }
-    public void play() {
-
+        return null;
     }
 }

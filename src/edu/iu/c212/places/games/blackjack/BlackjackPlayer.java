@@ -5,10 +5,11 @@ public class BlackjackPlayer extends BlackjackParticipant {
 
     }
     public String getCurrentTotalsString() {
-
+        return null;
     }
-    public int getBestTotal() {
 
+    public int getBestTotal() {
+        return 0;
     }
 
 }

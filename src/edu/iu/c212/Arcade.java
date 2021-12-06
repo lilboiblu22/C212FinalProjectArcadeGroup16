@@ -48,18 +48,19 @@ public class Arcade implements IArcade {
      * Arcade Constructor
      */
     public Arcade() {
+        allUsers = getUserSaveDataFromFile();
         // call getUserOnArcadeEntry and set currentUser.
         currentUser = getUserOnArcadeEntry();
         // instantiate the place list
         allPlaces = new ArrayList<>();
         // all places should take the arcade as an argument...
         allPlaces.add(new Lobby(this));
-        allPlaces.add(new GuessTheNumberGame());
+        allPlaces.add(new GuessTheNumberGame(this));
         allPlaces.add(new BlackjackGame(this));
-        allPlaces.add(new HangmanGame());
-        allPlaces.add(new TriviaGame());
-        allPlaces.add(new Inventory());
-        allPlaces.add(new Store());
+        allPlaces.add(new HangmanGame(this));
+        allPlaces.add(new TriviaGame(this));
+        allPlaces.add(new Inventory(this));
+        allPlaces.add(new Store(this));
         // transition the Arcade state to the Lobby
         transitionArcadeState(allPlaces.get(0).getPlaceName());
     }
@@ -78,7 +79,6 @@ public class Arcade implements IArcade {
     //public List<User> getUserSaveDataFromFile() throws IOException {
         // TODO
         //return FileUtils.getUserDataFromFile();
-
     }
 
     @Override
@@ -115,8 +115,9 @@ public class Arcade implements IArcade {
                     saveUsersToFile();
                     lobby.onEnter(currentUser);
                 }
+                break;
             }
-            case "Guess the Number Game": {
+            case "Guess the Number": {
                 GuessTheNumberGame guessTheNumberGame = (GuessTheNumberGame) allPlaces.get(1);
                 if (guessTheNumberGame.getEntryFee() > currentUser.getBalance()) {
                     System.out.println("You don't have enough money to enter. ");
@@ -126,10 +127,11 @@ public class Arcade implements IArcade {
                 else {
                     currentUser.removeBalance(guessTheNumberGame.getEntryFee());
                     saveUsersToFile();
-                    // guessTheNumberGame.onEnter(currentUser);
+                    guessTheNumberGame.onEnter(currentUser);
                 }
+                break;
             }
-            case "Blackjack Game": {
+            case "Blackjack": {
                 BlackjackGame blackjackGame = (BlackjackGame) allPlaces.get(2);
                 if (blackjackGame.getEntryFee() > currentUser.getBalance()) {
                     System.out.println("You don't have enough money to enter. ");
@@ -141,8 +143,9 @@ public class Arcade implements IArcade {
                     saveUsersToFile();
                     // blackjackGame.onEnter(currentUser);
                 }
+                break;
             }
-            case "Hangman Game": {
+            case "Hangman": {
                 HangmanGame hangmanGame = (HangmanGame) allPlaces.get(3);
                 if (hangmanGame.getEntryFee() > currentUser.getBalance()) {
                     System.out.println("You don't have enough money to enter. ");
@@ -154,8 +157,9 @@ public class Arcade implements IArcade {
                     saveUsersToFile();
                     // hangmanGame.onEnter(currentUser);
                 }
+                break;
             }
-            case "Trivia Game": {
+            case "Trivia": {
                 TriviaGame triviaGame = (TriviaGame) allPlaces.get(4);
                 if (triviaGame.getEntryFee() > currentUser.getBalance()) {
                     System.out.println("You don't have enough money to enter. ");
@@ -165,8 +169,9 @@ public class Arcade implements IArcade {
                 else {
                     currentUser.removeBalance(triviaGame.getEntryFee());
                     saveUsersToFile();
-                    // triviaGame.onEnter(currentUser);
+                    triviaGame.onEnter(currentUser);
                 }
+                break;
             }
             case "Inventory": {
                 Inventory inventory = (Inventory) allPlaces.get(5);
@@ -178,8 +183,9 @@ public class Arcade implements IArcade {
                 else {
                     currentUser.removeBalance(inventory.getEntryFee());
                     saveUsersToFile();
-                    // inventory.onEnter(currentUser);
+                    inventory.onEnter(currentUser);
                 }
+                break;
             }
             case "Store": {
                 Store store = (Store) allPlaces.get(6);
@@ -191,8 +197,9 @@ public class Arcade implements IArcade {
                 else {
                     currentUser.removeBalance(store.getEntryFee());
                     saveUsersToFile();
-                    // store.onEnter(currentUser);
+                    store.onEnter(currentUser);
                 }
+                break;
             }
         }
     }
@@ -203,29 +210,21 @@ public class Arcade implements IArcade {
                 "What is your username?\n" +
                 "Name: ");
         String name = ConsoleUtils.readLineFromConsole();
-        ListIterator<User> userListIterator = allUsers.listIterator();
 
-        while (userListIterator.hasNext()) {
-            User user = userListIterator.next();
-            if (name.equals(user.getUsername())) {
-                System.out.println("Welcome back, " + name + ". ");
+        // first, check if the user is already in the text file
+        // welcome them back if they are in the text file and return the user.
+        for (User user : allUsers) {
+            if (user.getUsername().equals(name)) {
+                System.out.println("Welcome back, " + name);
                 return user;
             }
-            else
-                userListIterator.next();
         }
-
-        System.out.println("Welcome to the arcade, " + name + "! ");
-        User user = new User(name, 150.00);
+        // if they are a new user, make a new user and add it to allUsers and save users.
+        // then return the user.
+        User user = new User(name, 100, new ArrayList<>());
         allUsers.add(user);
         saveUsersToFile();
         return user;
-
-        // If the username is not contained in the users as read
-        // from users.txt, a welcome message should be printed.
-
-        // If the username already exists,
-        // a welcome back message should be printed.
     }
 
     @Override
