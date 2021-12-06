@@ -38,8 +38,9 @@ public class Lobby extends Place {
                 "Welcome to the Lobby, " + user.getUsername() + ". \n"
                 + "Your balance: " + user.getBalance() + "\n"
                 + "Select a place to go: \n", arcade.getAllPlaces(), true);
+
         // transfer user to the selected place
-        arcade.transitionArcadeState(place.toString());
+        arcade.transitionArcadeState(place.getPlaceName());
 
         /*System.out.println("Welcome to the Lobby " + user.getUsername() + "!" + "\n"
                 + "You are currently in the Lobby. Your Balance is: " + user.getBalance());

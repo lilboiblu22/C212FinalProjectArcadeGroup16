@@ -1,0 +1,6 @@
+jon|97.0|[null]
+enrique|100.0|[null]
+jane|100.0|[null]
+joe|100.0|[null]
+martin|97.0|[null]
+glass|98.0|[name5: 2.0]

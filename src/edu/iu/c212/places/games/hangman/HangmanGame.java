@@ -1,5 +1,6 @@
 package edu.iu.c212.places.games.hangman;
 
+import edu.iu.c212.Arcade;
 import edu.iu.c212.models.User;
 import edu.iu.c212.places.Lobby;
 import edu.iu.c212.places.games.Game;
@@ -11,9 +12,10 @@ import java.util.*;
 
 public class HangmanGame extends Game implements IHangmanGame {
 
-    @Override
-    public void play() {
-
+    public HangmanGame(Arcade arcade) {
+        setArcade(arcade);
+        setPlaceName("Hangman");
+        setEntryFee(10);
     }
 
     @Override
