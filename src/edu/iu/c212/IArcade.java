@@ -3,6 +3,7 @@ package edu.iu.c212;
 import edu.iu.c212.models.User;
 import edu.iu.c212.places.Place;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface IArcade {
@@ -16,7 +17,7 @@ public interface IArcade {
     /**
      * This should call FileUtils.writeUserDataFromFile to write all users to the txt file.
      */
-    void saveUsersToFile();
+    void saveUsersToFile() throws IOException;
 
 
     /**
@@ -29,7 +30,7 @@ public interface IArcade {
      * Ask for User's name on entry to the Arcade.
      * @return a User.
      */
-    User getCurrentUserOnArcadeEntry();
+    User getUserOnArcadeEntry();
 
     /**
      * Return a List of all the Places in the Arcade.

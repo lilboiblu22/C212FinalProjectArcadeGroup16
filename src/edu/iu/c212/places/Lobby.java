@@ -12,6 +12,15 @@ import edu.iu.c212.utils.ConsoleUtils;
 public class Lobby extends Place {
 
     /**
+     * Lobby constructor.
+     */
+    public Lobby(Arcade arcade) {
+        this.arcade = arcade;
+        this.placeName = "Lobby";
+        this.entryFee = 0.0;
+    }
+
+    /**
      * This should use ConsoleUtils.printMenuToConsole to print a menu that
      * 1) welcomes you to the arcade
      * 2) lets you know your balance
@@ -23,7 +32,7 @@ public class Lobby extends Place {
      * @param user the User who has entered the lobby.
      */
     @Override
-    protected void onEnter(User user) {
+    public void onEnter(User user) {
         // the menu
         Place place = ConsoleUtils.printMenuToConsole(
                 "Welcome to the Lobby, " + user.getUsername() + ". \n"

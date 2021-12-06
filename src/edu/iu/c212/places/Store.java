@@ -109,6 +109,7 @@ public class Store extends Place {
                 case "yes" -> {
                     System.out.println("Buying " + item);
                     arcade.getCurrentUser().addItem(item);
+                    arcade.getCurrentUser().removeBalance(item.getValue());
                 }
                 case "no" -> System.out.println("You chose not to buy this " + item);
             }
