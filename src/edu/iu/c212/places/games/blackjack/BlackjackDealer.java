@@ -34,21 +34,19 @@ public class BlackjackDealer extends BlackjackParticipant {
 
 
     public String getPartialHand () {
-// <<<<<<< master-two
-//         return null;
-// =======
-//         return shownCard + "???";
 
-//     }
-//     public void play() {
-//         if (bust) {
-//             dealerBest = -1;
-//         }
-//         if (getBestTotal() <= 17) {
-//             hit();
 
-//         }
+         return shownCard + "???";
 
-// >>>>>>> master
+     }
+     public void play() {
+         if (bust) {
+             dealerBest = -1;
+         }
+         if (getBestTotal() <= 17) {
+             hit();
+
+         }
+
     }
 }
