@@ -7,6 +7,7 @@ import edu.iu.c212.utils.FileUtils;
 //import jdk.incubator.vector.VectorOperators;
 
 import java.io.Console;
+import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.function.Function;

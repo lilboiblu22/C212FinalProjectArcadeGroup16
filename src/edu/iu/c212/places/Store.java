@@ -6,6 +6,7 @@ import edu.iu.c212.models.User;
 import edu.iu.c212.utils.ConsoleUtils;
 
 import java.io.Console;
+import java.io.IOException;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,7 +50,7 @@ public class Store extends Place {
     }
 
     @Override
-    public void onEnter(User user) {
+    public void onEnter(User user) throws IOException, InterruptedException {
         while (true) {
             List<StoreAction> storeActionList = new ArrayList<>();
             storeActionList.add(StoreAction.BUY); storeActionList.add(StoreAction.SELL);

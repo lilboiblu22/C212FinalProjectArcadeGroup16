@@ -23,7 +23,7 @@ public abstract class Place {
      * What is invoked when the place is entered.
      * @param user the current User.
      */
-    public abstract void onEnter(User user) throws IOException;
+    public abstract void onEnter(User user) throws IOException, InterruptedException;
 
     /**
      * Should return the place name, the entry fee,

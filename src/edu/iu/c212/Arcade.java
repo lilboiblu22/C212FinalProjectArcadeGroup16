@@ -92,7 +92,7 @@ public class Arcade implements IArcade {
     }
 
     @Override
-    public void transitionArcadeState(String newPlaceNameToGoTo) {
+    public void transitionArcadeState(String newPlaceNameToGoTo) throws IOException, InterruptedException {
         // TO SEND THE USER TO THE PLACE, YOU HAVE
         // TO CALL THE onEnter() METHOD OF THE PLACE...
 

@@ -24,7 +24,7 @@ public interface IArcade {
      * Attempt to transition the currentUser to the new place.
      * @param newPlaceNameToGoTo a Place that the user wants to go.
      */
-    void transitionArcadeState(String newPlaceNameToGoTo);
+    void transitionArcadeState(String newPlaceNameToGoTo) throws IOException, InterruptedException;
 
     /**
      * Ask for User's name on entry to the Arcade.
