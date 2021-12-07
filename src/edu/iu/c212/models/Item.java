@@ -1,16 +1,16 @@
 package edu.iu.c212.models;
 
 public enum Item {
-    ITEM_ONE("name1", 2.0),
-    ITEM_TWO("name2", 3.0),
-    ITEM_THREE("name3", 2.0),
-    ITEM_FOUR("name4", 3.0),
-    ITEM_FIVE("name5", 2.0),
-    ITEM_SIX("name6", 3.0),
-    ITEM_SEVEN("name7", 2.0),
-    ITEM_EIGHT("name8", 3.0),
-    ITEM_NINE("name9", 2.0),
-    ITEM_TEN("name10", 3.0),
+    ITEM_ONE("Slinky", 2.00),
+    ITEM_TWO("Yo-yo", 1.50),
+    ITEM_THREE("Giant Stuffed Bear", 14.0),
+    ITEM_FOUR("HexBug", 3.0),
+    ITEM_FIVE("Jar of Jellybeans", 10.0),
+    ITEM_SIX("Finger Trap", 3.0),
+    ITEM_SEVEN("Novelty Mug", 20.0),
+    ITEM_EIGHT("Claw Hand", 15.0),
+    ITEM_NINE("Lego Bionicle Set", 75.0),
+    ITEM_TEN("Small Gumball Machine", 100.0),
     ;
 
     /**
