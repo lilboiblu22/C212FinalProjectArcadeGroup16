@@ -5,6 +5,7 @@ import edu.iu.c212.models.Item;
 import edu.iu.c212.models.User;
 import edu.iu.c212.utils.ConsoleUtils;
 
+import java.io.IOException;
 import java.util.List;
 
 public class Inventory extends Place {
@@ -16,7 +17,7 @@ public class Inventory extends Place {
     }
 
     @Override
-    public void onEnter(User user) {
+    public void onEnter(User user) throws IOException, InterruptedException {
         ConsoleUtils.printToConsole("Hello, " + user.getUsername() + "! You are in the inventory. Here is what you have:");
         ConsoleUtils.printToConsole(user.getInventory().toString());
         arcade.transitionArcadeState("Lobby");

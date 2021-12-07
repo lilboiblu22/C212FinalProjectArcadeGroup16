@@ -4,6 +4,8 @@ import edu.iu.c212.Arcade;
 import edu.iu.c212.models.User;
 import edu.iu.c212.utils.ConsoleUtils;
 
+import java.io.IOException;
+
 /**
  * This represents the Lobby, which you will enter at the beginning
  * of the arcade and after exiting any other places.
@@ -32,7 +34,7 @@ public class Lobby extends Place {
      * @param user the User who has entered the lobby.
      */
     @Override
-    public void onEnter(User user) {
+    public void onEnter(User user) throws IOException, InterruptedException {
         // the menu
         Place place = ConsoleUtils.printMenuToConsole(
                 "Welcome to the Lobby, " + user.getUsername() + ". \n"
