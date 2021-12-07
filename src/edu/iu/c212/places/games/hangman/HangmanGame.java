@@ -64,7 +64,6 @@ public class HangmanGame extends Game implements IHangmanGame {
                 continueGame = false;
             }
         }
-        // go to lobby
     }
 
     @Override

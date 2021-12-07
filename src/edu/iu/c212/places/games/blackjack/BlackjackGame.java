@@ -27,7 +27,7 @@ public class BlackjackGame extends Game {
 
 
     public BlackjackGame(Arcade arcade) {
-        super(arcade,"Blackjack",10);
+
         setArcade(arcade);
         setEntryFee(10);
         setPlaceName("Blackjack");
@@ -37,7 +37,7 @@ public class BlackjackGame extends Game {
 
     }
 
-    @Override
+
     public void play() {
 
     }

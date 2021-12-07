@@ -13,11 +13,11 @@ public class ArcadeMain {
         // instantiate the arcade object
         Arcade arcade = new Arcade();
 
-        /*List<Integer> ints = new ArrayList<>();
+        List<Integer> ints = new ArrayList<>();
         for (int i = 0; i <= 25; i++) {
             ints.add(i);
         }
-        ConsoleUtils.printMenuToConsole("Menu", ints, false);*/
+        ConsoleUtils.printMenuToConsole("Menu", ints, false);
     }
 
 }

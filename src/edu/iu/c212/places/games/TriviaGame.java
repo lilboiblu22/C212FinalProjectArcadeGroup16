@@ -1,5 +1,6 @@
 package edu.iu.c212.places.games;
 
+import edu.iu.c212.Arcade;
 import edu.iu.c212.models.User;
 import edu.iu.c212.utils.ConsoleUtils;
 import edu.iu.c212.utils.http.HttpUtils;
@@ -12,6 +13,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class TriviaGame extends Game {
+
+    public TriviaGame(Arcade arcade) {
+        setArcade(arcade);
+        setPlaceName("Trivia Game");
+        setEntryFee(5);
+
+    }
 
     @Override
     public void onEnter(User user) throws IOException, InterruptedException {

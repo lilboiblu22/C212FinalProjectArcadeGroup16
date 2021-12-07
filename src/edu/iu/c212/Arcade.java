@@ -47,7 +47,7 @@ public class Arcade implements IArcade {
     /**
      * Arcade Constructor
      */
-    public Arcade() {
+    public Arcade() throws IOException, InterruptedException {
         allUsers = getUserSaveDataFromFile();
         // call getUserOnArcadeEntry and set currentUser.
         currentUser = getUserOnArcadeEntry();
@@ -62,7 +62,7 @@ public class Arcade implements IArcade {
         allPlaces.add(new Inventory(this));
         allPlaces.add(new Store(this));
         // transition the Arcade state to the Lobby
-        transitionArcadeState(allPlaces.get(0).getPlaceName());
+           transitionArcadeState(allPlaces.get(0).getPlaceName());
     }
 
     @Override

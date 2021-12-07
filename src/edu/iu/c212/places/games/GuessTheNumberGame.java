@@ -25,7 +25,7 @@ public class GuessTheNumberGame extends Game {
     }
 
     @Override
-    public void onEnter(User user) {
+    public void onEnter(User user) throws IOException, InterruptedException {
         ConsoleUtils.printToConsole("Welcome to Guess The Number Game! You'll be guessing a number between 0 and 20.");
         ConsoleUtils.printToConsole("You'll get $25 if you guess the number within 5 tries. Otherwise, you get nothing.");
 
