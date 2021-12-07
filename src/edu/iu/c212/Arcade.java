@@ -159,7 +159,7 @@ public class Arcade implements IArcade {
                 else {
                     currentUser.removeBalance(hangmanGame.getEntryFee());
                     saveUsersToFile();
-                    // hangmanGame.onEnter(currentUser);
+                    hangmanGame.onEnter(currentUser);
                 }
                 break;
             }
