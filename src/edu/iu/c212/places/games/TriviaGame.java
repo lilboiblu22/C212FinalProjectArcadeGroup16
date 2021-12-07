@@ -16,9 +16,19 @@ public class TriviaGame extends Game {
     @Override
     public void onEnter(User user) {
         ConsoleUtils.printToConsole("Welcome to C2112 Trivia ! You'll get $2 for every correct a answer - there are 5 total questions in this trivia round.");
-        ConsoleUtils.printToConsole("You're on question 1. Ready?");
-        // this is not implemented correctly...
-        //ConsoleUtils.printMenuToConsole(HttpUtils.getTriviaQuestions(5));
+
+        ConsoleUtils.printToConsole("Let's get started!");
+        try {
+            Thread.sleep(1000);
+
+    }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        ConsoleUtils.printToConsole(HttpUtils.getTriviaQuestions(5));
+        ConsoleUtils.printToConsole(HttpUtils.getTriviaAnswers(5));
+
+
     }
 
 }
