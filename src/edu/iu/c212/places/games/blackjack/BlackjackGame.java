@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
 import java.util.Random;
 
 public class BlackjackGame extends Game {
@@ -16,8 +17,10 @@ public class BlackjackGame extends Game {
     private static Random rand = new Random();
     private static boolean bust = false;
     private static JLabel totalsLabel;
+    private static JLabel dealerLabel;
     private static JButton hit;
     private static JButton stay;
+    private static JLabel result;
     static BlackjackPlayer player;
     static BlackjackDealer dealer;
     public static boolean isRunning;
@@ -43,25 +46,26 @@ public class BlackjackGame extends Game {
     }
 
     public void onEnter(User user) {
-        BlackjackPlayer player = new BlackjackPlayer();
-        BlackjackDealer dealer = new BlackjackDealer();
+        System.out.println("entering!");
+        player = new BlackjackPlayer();
+        dealer = new BlackjackDealer();
         User User = new User();
 
         JFrame frame = new JFrame();
         frame = new JFrame();
-        frame.setTitle("MouseListenerDemo");
+        frame.setTitle("BlackJack");
         frame.setSize(420, 420);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel mainPanel = new JPanel();
         JPanel statusPanel = new JPanel();
 
-        totalsLabel = new JLabel("Your hand total: " + handTotals[0]);
+        totalsLabel = new JLabel("Your hand total: " + player.getBestTotal());
         statusPanel.add(totalsLabel);
         JPanel buttonsPanel = new JPanel();
-        JLabel dealerLabel = new JLabel("Dealer's hand: " + nums[rand.nextInt(nums.length)] + ", ???");
+        dealerLabel = new JLabel("Dealer's hand: " + dealer.getPartialHand());
 
         hit = new JButton("Hit!");
         stay = new JButton("stay");
+        result = new JLabel("");
         buttonsPanel.add(hit);
         buttonsPanel.add(stay);
         statusPanel.add(dealerLabel);
@@ -69,6 +73,8 @@ public class BlackjackGame extends Game {
         mainPanel.add(buttonsPanel);
         hit.addActionListener(new hitButtonListener());
         stay.addActionListener(new stayButtonListener());
+        frame.addWindowListener(new WindowClosedListener() {
+        });
 
 
         frame.add(mainPanel);
@@ -91,7 +97,7 @@ public class BlackjackGame extends Game {
 
 
     }
-    public static class WindowClosedListener implements WindowListener {
+    public class WindowClosedListener implements WindowListener {
 
         @Override
         public void windowOpened(WindowEvent e) {}
@@ -107,12 +113,26 @@ public class BlackjackGame extends Game {
 
             }
             else {
-                if (player.getBestTotal() > dealer.getBestTotal()) {
+                if (player.getBust())
+                    System.out.println("You lost! Hope to see you again soon!");
+                else if (player.getBestTotal() > dealer.getBestTotal()) {
                     System.out.println("Congratulations! you won $50!!");
                     //give player some money
                     System.out.println("\n Hope to see you again soon!");
+                }
+                else if (player.getBestTotal() == dealer.getBestTotal()) {
+                    System.out.println("Whoops! Nobody won... ");
+                    System.out.println("\n Hope to see you again soon!! \n\n\n");
+                }
 
                 }
+
+            try {
+                getArcade().transitionArcadeState("Lobby");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
             }
         }
 
@@ -134,9 +154,16 @@ public class BlackjackGame extends Game {
         @Override
         public void actionPerformed(ActionEvent e) {
             dealer.play();
+            if (dealer.getBust()) {
+                dealerLabel.setText("The Dealer BUSTED!!       YOU WIN!");
+            }
+            else {
+                dealerLabel.setText("Dealer's hand: " + dealer.getBestTotal());
+            }
 
             hit.setEnabled(false);
             stay.setEnabled(false);
+            isRunning = false;
 
         }
     }
@@ -155,7 +182,7 @@ public class BlackjackGame extends Game {
                 isRunning = false;
                 //write losing code here
             } else {
-                totalsLabel.setText(player.getCurrentTotalsString());
+                totalsLabel.setText("Your hand total: " + player.getBestTotal());
             }
         }
     }

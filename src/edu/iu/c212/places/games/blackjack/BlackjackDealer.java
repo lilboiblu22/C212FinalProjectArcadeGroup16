@@ -11,11 +11,11 @@ public class BlackjackDealer extends BlackjackParticipant {
         firstCard = true;
     }
     @Override public void hit() {
+        int addNum = nums[rand.nextInt(nums.length)];
         if ((handTotals[0] + addNum) > 21) {
             bust = true;
         }
         else {
-            int addNum = nums[rand.nextInt(nums.length)];
             if (addNum == 1) {
                 isAOne = true;
                 handTotals[0] += 1;
@@ -36,16 +36,15 @@ public class BlackjackDealer extends BlackjackParticipant {
     public String getPartialHand () {
 
 
-         return shownCard + "???";
+         return shownCard + " + ???";
 
      }
      public void play() {
+        while (getBestTotal() <= 17) {
+            hit();
+        }
          if (bust) {
              dealerBest = -1;
-         }
-         if (getBestTotal() <= 17) {
-             hit();
-
          }
 
     }
