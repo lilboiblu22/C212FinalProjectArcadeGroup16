@@ -16,6 +16,7 @@ public class BlackjackGame extends Game {
     protected int [] handTotals = new int[10];
     private static Random rand = new Random();
     private static boolean bust = false;
+    private static JFrame frame;
     private static JLabel totalsLabel;
     private static JLabel dealerLabel;
     private static JButton hit;
@@ -24,6 +25,7 @@ public class BlackjackGame extends Game {
     static BlackjackPlayer player;
     static BlackjackDealer dealer;
     public static boolean isRunning;
+    public User user;
 
     private Object lock;
     public static Thread t;
@@ -48,9 +50,9 @@ public class BlackjackGame extends Game {
     public void onEnter(User user) {
         player = new BlackjackPlayer();
         dealer = new BlackjackDealer();
-        User User = new User();
+        this.user = user;
 
-        JFrame frame = new JFrame();
+
         frame = new JFrame();
         frame.setTitle("BlackJack");
         frame.setSize(420, 420);
@@ -108,24 +110,37 @@ public class BlackjackGame extends Game {
         @Override
         public void windowClosed(WindowEvent e) {
             if (isRunning) {
-                System.out.println("\n\n\n By exiting mid-game, you've chose to forfeit");
-                System.out.println("Goodbye!");
+                System.out.println("================================================");
+                System.out.println("\n By exiting mid-game, you've choose to forfeit");
+                System.out.println("\n Goodbye!");
+                System.out.println("================================================\n");
 
             }
             else {
-                if (player.getBust())
-                    System.out.println("\n\n\n You lost! Hope to see you again soon!");
+                if (player.getBust()) {
+                    System.out.println("================================================");
+                    System.out.println("\n You lost! Hope to see you again soon! \n");
+                    System.out.println("================================================\n");
+                }
                 else if (player.getBestTotal() > dealer.getBestTotal()) {
-                    System.out.println("\n\n\n Congratulations! you won $50!!");
+                    user.addBalance(25.00);
+                    getArcade().saveUsersToFile();
+                    System.out.println("================================================");
+                    System.out.println("\n Congratulations! you won $50!!");
                     //give player some money
                     System.out.println("\n Hope to see you again soon!");
+                    System.out.println("================================================ \n");
                 }
                 else if (player.getBestTotal() == dealer.getBestTotal()) {
-                    System.out.println("\n\n\n Whoops! Nobody won... ");
-                    System.out.println("\n Hope to see you again soon!! \n\n\n");
+                    System.out.println("================================================");
+                    System.out.println("\n Whoops! Nobody won... ");
+                    System.out.println("\n Hope to see you again soon!! ");
+                    System.out.println("================================================ \n");
                 }
                 else {
-                    System.out.println("\n\n\n You lost! Hope to see you again soon!");
+                    System.out.println("================================================\n");
+                    System.out.println("\n You lost! Hope to see you again soon!");
+                    System.out.println("================================================\n");
                 }
 
                 }
@@ -167,6 +182,12 @@ public class BlackjackGame extends Game {
                 if (dealer.getBestTotal()> player.getBestTotal()) {
                     result.setText("You Lost!");
                 }
+                else if (dealer.getBestTotal() == player.getBestTotal()) {
+                    result.setText("It's a tie!");
+                }
+                else {
+                    result.setText("You won!");
+                }
             }
 
             hit.setEnabled(false);
@@ -188,6 +209,7 @@ public class BlackjackGame extends Game {
                 isRunning = false;
                 //write losing code here
                 result.setText("You Lost!");
+                dealerLabel.setText("Dealer's hand: " + dealer.getBestTotal());
             } else {
                 totalsLabel.setText("Your hand total: " + player.getBestTotal());
 
