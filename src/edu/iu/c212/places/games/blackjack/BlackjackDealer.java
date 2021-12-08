@@ -44,8 +44,13 @@ public class BlackjackDealer extends BlackjackParticipant {
             hit();
         }
          if (bust) {
-             dealerBest = -1;
+             handTotals[0] = -1;
+
+
          }
 
+    }
+    public boolean getBust() {
+        return bust;
     }
 }

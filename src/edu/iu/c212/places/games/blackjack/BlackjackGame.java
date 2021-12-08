@@ -46,7 +46,6 @@ public class BlackjackGame extends Game {
     }
 
     public void onEnter(User user) {
-        System.out.println("entering!");
         player = new BlackjackPlayer();
         dealer = new BlackjackDealer();
         User User = new User();
@@ -71,6 +70,7 @@ public class BlackjackGame extends Game {
         statusPanel.add(dealerLabel);
         mainPanel.add(statusPanel);
         mainPanel.add(buttonsPanel);
+        statusPanel.add(result);
         hit.addActionListener(new hitButtonListener());
         stay.addActionListener(new stayButtonListener());
         frame.addWindowListener(new WindowClosedListener() {
@@ -108,21 +108,24 @@ public class BlackjackGame extends Game {
         @Override
         public void windowClosed(WindowEvent e) {
             if (isRunning) {
-                System.out.println("By exiting mid-game, you've chose to forfeit");
+                System.out.println("\n\n\n By exiting mid-game, you've chose to forfeit");
                 System.out.println("Goodbye!");
 
             }
             else {
                 if (player.getBust())
-                    System.out.println("You lost! Hope to see you again soon!");
+                    System.out.println("\n\n\n You lost! Hope to see you again soon!");
                 else if (player.getBestTotal() > dealer.getBestTotal()) {
-                    System.out.println("Congratulations! you won $50!!");
+                    System.out.println("\n\n\n Congratulations! you won $50!!");
                     //give player some money
                     System.out.println("\n Hope to see you again soon!");
                 }
                 else if (player.getBestTotal() == dealer.getBestTotal()) {
-                    System.out.println("Whoops! Nobody won... ");
+                    System.out.println("\n\n\n Whoops! Nobody won... ");
                     System.out.println("\n Hope to see you again soon!! \n\n\n");
+                }
+                else {
+                    System.out.println("\n\n\n You lost! Hope to see you again soon!");
                 }
 
                 }
@@ -155,10 +158,15 @@ public class BlackjackGame extends Game {
         public void actionPerformed(ActionEvent e) {
             dealer.play();
             if (dealer.getBust()) {
-                dealerLabel.setText("The Dealer BUSTED!!       YOU WIN!");
+                dealerLabel.setText("The Dealer BUSTED!!");
+                result.setText("You won!");
+
             }
             else {
                 dealerLabel.setText("Dealer's hand: " + dealer.getBestTotal());
+                if (dealer.getBestTotal()> player.getBestTotal()) {
+                    result.setText("You Lost!");
+                }
             }
 
             hit.setEnabled(false);
@@ -174,15 +182,15 @@ public class BlackjackGame extends Game {
         public void actionPerformed(ActionEvent e) {
             player.hit();
             if (player.getBust()) {
-                totalsLabel.setText("BUST");
                 hit.setEnabled(false);
                 stay.setEnabled(false);
-                System.out.println("bust");
                 totalsLabel.setText("BUST");
                 isRunning = false;
                 //write losing code here
+                result.setText("You Lost!");
             } else {
                 totalsLabel.setText("Your hand total: " + player.getBestTotal());
+
             }
         }
     }

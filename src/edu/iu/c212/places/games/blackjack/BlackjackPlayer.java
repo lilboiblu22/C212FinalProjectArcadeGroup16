@@ -6,15 +6,6 @@ public class BlackjackPlayer extends BlackjackParticipant {
         hit();
         hit();
     }
-    public String getCurrentTotalsString() {
-
-        if (handTotals[0] != handTotals[1] && handTotals[1] < 21) {
-
-            return ("Your first  hand total: " + handTotals[0] + "and your second hand total: " + handTotals[1]);
-        } else {
-            return ("Your hand total: " + handTotals[0]);
-        }
-    }
     @Override
     public int getBestTotal() {
         if (handTotals[1] <= 21) {

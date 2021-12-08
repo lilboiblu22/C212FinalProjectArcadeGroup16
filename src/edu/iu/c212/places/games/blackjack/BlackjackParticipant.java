@@ -17,14 +17,11 @@ public abstract class BlackjackParticipant {
         return bust;
     }
 
-    public boolean getPlayerWin () {
-        return playerWin;
-    }
     public void hit() {
 
     }
     public int getBestTotal() {
-        if (handTotals[1] >= 21) {
+        if (handTotals[1] <= 21) {
             return handTotals[1];
         }
         else {
