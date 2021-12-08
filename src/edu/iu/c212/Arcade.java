@@ -137,6 +137,7 @@ public class Arcade implements IArcade {
                     System.out.println("You don't have enough money to enter. ");
                     Lobby lobby = (Lobby) allPlaces.get(0);
                     lobby.onEnter(currentUser);
+                    System.out.println("hi!");
                 }
                 else {
                     currentUser.removeBalance(blackjackGame.getEntryFee());

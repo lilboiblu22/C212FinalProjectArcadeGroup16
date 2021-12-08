@@ -11,7 +11,8 @@ public class BlackjackDealer extends BlackjackParticipant {
         firstCard = true;
     }
     @Override public void hit() {
-        int addNum = nums[rand.nextInt(nums.length)];
+        int addNum = nums.get(rand.nextInt(nums.size()));
+        nums.remove(addNum);
         if ((handTotals[0] + addNum) > 21) {
             bust = true;
         }

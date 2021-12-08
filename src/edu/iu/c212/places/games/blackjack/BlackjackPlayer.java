@@ -1,5 +1,7 @@
 package edu.iu.c212.places.games.blackjack;
 
+import java.util.Arrays;
+
 public class BlackjackPlayer extends BlackjackParticipant {
     protected int []handTotals = new int[10];
     public BlackjackPlayer() {
@@ -20,7 +22,8 @@ public class BlackjackPlayer extends BlackjackParticipant {
 
     @Override
     public void hit() {
-        int addNum = nums[rand.nextInt(nums.length)];
+        int addNum = nums.get(rand.nextInt(nums.size()));
+        nums.remove(addNum);
         if ((handTotals[0] + addNum) > 21) {
             bust = true;
         } else {
@@ -34,5 +37,8 @@ public class BlackjackPlayer extends BlackjackParticipant {
                 handTotals[1] += addNum;
             }
         }
+
+
+        }
     }
-}
+
