@@ -1,7 +1,5 @@
 package edu.iu.c212.places.games.blackjack;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 public abstract class BlackjackParticipant {
@@ -10,8 +8,6 @@ public abstract class BlackjackParticipant {
     static Random rand = new Random();
     boolean isAOne;
     boolean bust;
-    int addNum;
-    static boolean playerWin;
 
     public boolean getBust () {
         return bust;

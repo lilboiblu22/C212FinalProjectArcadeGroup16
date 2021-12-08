@@ -142,10 +142,6 @@ public class Arcade implements IArcade {
                     currentUser.removeBalance(blackjackGame.getEntryFee());
                     saveUsersToFile();
                     blackjackGame.onEnter(currentUser);
-                    try {
-                        BlackjackGame.t.join();
-                    } catch (InterruptedException ignored) {
-                    }
                 }
                 break;
             }

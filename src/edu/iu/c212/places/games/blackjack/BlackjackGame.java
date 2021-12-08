@@ -9,13 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
-import java.util.Random;
 
 public class BlackjackGame extends Game {
-    private static int[] nums = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
-    protected int [] handTotals = new int[10];
-    private static Random rand = new Random();
-    private static boolean bust = false;
     private static JFrame frame;
     private static JLabel totalsLabel;
     private static JLabel dealerLabel;
@@ -43,9 +38,6 @@ public class BlackjackGame extends Game {
     }
 
 
-    public void play() {
-
-    }
 
     public void onEnter(User user) {
         player = new BlackjackPlayer();
@@ -82,18 +74,6 @@ public class BlackjackGame extends Game {
         frame.add(mainPanel);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        lock = new Object();
-        JFrame finalFrame = frame;
-        t = new Thread (() -> {
-            synchronized (lock) {
-                while (finalFrame.isVisible()) {
-                    try {
-                        lock.wait();
-                    } catch (InterruptedException ignored) {}
-                }
-            }
-        });
-        t.start();
 
         isRunning = true;
 
@@ -207,7 +187,6 @@ public class BlackjackGame extends Game {
                 stay.setEnabled(false);
                 totalsLabel.setText("BUST");
                 isRunning = false;
-                //write losing code here
                 result.setText("You Lost!");
                 dealerLabel.setText("Dealer's hand: " + dealer.getBestTotal());
             } else {
