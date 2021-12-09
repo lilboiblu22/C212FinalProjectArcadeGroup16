@@ -22,9 +22,6 @@ public class BlackjackGame extends Game {
     public static boolean isRunning;
     public User user;
 
-    private Object lock;
-    public static Thread t;
-
 
     public BlackjackGame(Arcade arcade) {
 
@@ -67,8 +64,7 @@ public class BlackjackGame extends Game {
         statusPanel.add(result);
         hit.addActionListener(new hitButtonListener());
         stay.addActionListener(new stayButtonListener());
-        frame.addWindowListener(new WindowClosedListener() {
-        });
+        frame.addWindowListener(new WindowClosedListener() {});
 
 
         frame.add(mainPanel);
