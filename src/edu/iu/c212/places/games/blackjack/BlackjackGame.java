@@ -103,7 +103,7 @@ public class BlackjackGame extends Game {
                     System.out.println("================================================\n");
                 }
                 else if (player.getBestTotal() > dealer.getBestTotal()) {
-                    user.addBalance(25.00);
+                    user.addBalance(50.00);
                     getArcade().saveUsersToFile();
                     System.out.println("================================================");
                     System.out.println("\n Congratulations! you won $50!!");
@@ -185,7 +185,7 @@ public class BlackjackGame extends Game {
             if (player.getBust()) {
                 hit.setEnabled(false);
                 stay.setEnabled(false);
-                totalsLabel.setText("BUST");
+                totalsLabel.setText("You BUSTED");
                 isRunning = false;
                 result.setText("You Lost!");
                 dealerLabel.setText("Dealer's hand: " + dealer.getBestTotal());
