@@ -53,7 +53,7 @@ public class Arcade implements IArcade {
         currentUser = getUserOnArcadeEntry();
         // instantiate the place list
         allPlaces = new ArrayList<>();
-        // all places should take the arcade as an argument...
+         // all places should take the arcade as an argument...
         allPlaces.add(new Lobby(this));
         allPlaces.add(new GuessTheNumberGame(this));
         allPlaces.add(new BlackjackGame(this));
