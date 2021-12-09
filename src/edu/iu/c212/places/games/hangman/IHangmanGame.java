@@ -8,6 +8,6 @@ import java.util.*;
 public interface IHangmanGame {
     String getBlurredWord(List<Character> guesses, String word);
     List<Character> getValidLexicon();
-    void onEnter(User user) throws IOException;
+    void onEnter(User user) throws IOException, InterruptedException;
 
 }

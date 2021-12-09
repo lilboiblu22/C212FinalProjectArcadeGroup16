@@ -19,7 +19,7 @@ public class HangmanGame extends Game implements IHangmanGame {
     }
 
     @Override
-    public void onEnter(User user) throws IOException {
+    public void onEnter(User user) throws IOException, InterruptedException {
         user.removeBalance(5);
         System.out.println("Welcome to the Hangman Game!");
         System.out.println("Here are the rules:");
@@ -56,6 +56,7 @@ public class HangmanGame extends Game implements IHangmanGame {
             }
             if(incorrectGuesses == 6){
                 System.out.println("You Lost!");
+                System.out.println("The word was: " + word);
                 continueGame = false;
             }
             if(word.equals(getBlurredWord(guesses, word))){
@@ -64,6 +65,8 @@ public class HangmanGame extends Game implements IHangmanGame {
                 continueGame = false;
             }
         }
+        getArcade().saveUsersToFile();
+        getArcade().transitionArcadeState("Lobby");
     }
 
     @Override

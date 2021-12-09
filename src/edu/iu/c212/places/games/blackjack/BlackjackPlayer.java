@@ -1,27 +1,44 @@
 package edu.iu.c212.places.games.blackjack;
 
+import java.util.Arrays;
+
 public class BlackjackPlayer extends BlackjackParticipant {
     protected int []handTotals = new int[10];
     public BlackjackPlayer() {
         hit();
         hit();
     }
-    public String getCurrentTotalsString() {
-
-        if (handTotals[0] != handTotals[1] && handTotals[1] < 21) {
-
-            return ("Your first  hand total: " + handTotals[0] + "and your second hand total: " + handTotals[1]);
-        } else {
-            return ("Your hand total: " + handTotals[0]);
-        }
-    }
-
+    @Override
     public int getBestTotal() {
-        return 0;
+        if (handTotals[1] <= 21) {
+            return handTotals[1];
+        }
+        else {
+            return handTotals[0];
+        }
+
     }
 
 
     @Override
     public void hit() {
+        int addNum = nums.get(rand.nextInt(nums.size()));
+        nums.remove(addNum);
+        if ((handTotals[0] + addNum) > 21) {
+            bust = true;
+        } else {
+
+            if (addNum == 1) {
+                isAOne = true;
+                handTotals[0] += 1;
+                handTotals[1] += 11;
+            } else {
+                handTotals[0] += addNum;
+                handTotals[1] += addNum;
+            }
+        }
+
+
+        }
     }
-}
+
