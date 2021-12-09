@@ -3,7 +3,11 @@ package edu.iu.c212.places.games.blackjack;
 import java.util.Arrays;
 
 public class BlackjackPlayer extends BlackjackParticipant {
+    public boolean playerBust;
     protected int []handTotals = new int[10];
+    public boolean getBust() {
+        return playerBust;
+    }
     public BlackjackPlayer() {
         hit();
         hit();
@@ -25,7 +29,7 @@ public class BlackjackPlayer extends BlackjackParticipant {
         int addNum = nums.get(rand.nextInt(nums.size()));
         nums.remove(addNum);
         if ((handTotals[0] + addNum) > 21) {
-            bust = true;
+            playerBust = true;
         } else {
 
             if (addNum == 1) {
