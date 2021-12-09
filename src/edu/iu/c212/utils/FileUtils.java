@@ -68,16 +68,16 @@ public class FileUtils {
                 // 2.0
                 // just need the name...
                 Item enumItem = switch (item[0]) {
-                    case "name1" -> Item.ITEM_ONE;
-                    case "name2" -> Item.ITEM_TWO;
-                    case "name3" -> Item.ITEM_THREE;
-                    case "name4" -> Item.ITEM_FOUR;
-                    case "name5" -> Item.ITEM_FIVE;
-                    case "name6" -> Item.ITEM_SIX;
-                    case "name7" -> Item.ITEM_SEVEN;
-                    case "name8" -> Item.ITEM_EIGHT;
-                    case "name9" -> Item.ITEM_NINE;
-                    case "name10" -> Item.ITEM_TEN;
+                    case "Slinky" -> Item.ITEM_ONE;
+                    case "Yo-yo" -> Item.ITEM_TWO;
+                    case "Giant Stuffed Bear" -> Item.ITEM_THREE;
+                    case "HexBug" -> Item.ITEM_FOUR;
+                    case "Jar of Jellybeans" -> Item.ITEM_FIVE;
+                    case "Finger Trap" -> Item.ITEM_SIX;
+                    case "Novelty Mug" -> Item.ITEM_SEVEN;
+                    case "Claw Hand" -> Item.ITEM_EIGHT;
+                    case "Lego Bionicle Set" -> Item.ITEM_NINE;
+                    case "Small Gumball Machine" -> Item.ITEM_TEN;
                     default -> null;
                 };
                 listOfItems.add(enumItem);
