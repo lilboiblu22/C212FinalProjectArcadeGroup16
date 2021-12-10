@@ -16,7 +16,7 @@ public class TriviaGame extends Game {
 
     public TriviaGame(Arcade arcade) {
         setArcade(arcade);
-        setPlaceName("Trivia Game");
+        setPlaceName("Trivia");
         setEntryFee(5);
 
     }
@@ -24,7 +24,7 @@ public class TriviaGame extends Game {
     @Override
     public void onEnter(User user) throws IOException, InterruptedException {
         ConsoleUtils.printToConsole("Welcome to C212 Trivia ! You'll get $2 for every correct a answer - there are 5 total questions in this trivia round.");
-        List<TriviaQuestion> question = HttpUtils.getTriviaQuestions(1);
+        List<TriviaQuestion> question = HttpUtils.getTriviaQuestions(5);
         int correctAnswerCount = 0;
         for(int i = 0; i < 5; i++){
             ConsoleUtils.printToConsole("You're on question " + (i + 1) + ". Ready?");
@@ -55,6 +55,7 @@ public class TriviaGame extends Game {
             }
 
         }
+        getArcade().transitionArcadeState("Lobby");
     }
 
 
