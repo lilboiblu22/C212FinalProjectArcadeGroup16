@@ -70,6 +70,7 @@ public class Store extends Place {
                 }
                 case LEAVE: {
                     arcade.transitionArcadeState("Lobby");
+                    break;
                 }
                 default: // won't ever execute bt dubs
                     System.out.println("Invalid input");

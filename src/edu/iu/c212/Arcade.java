@@ -160,7 +160,7 @@ public class Arcade implements IArcade {
                 }
                 break;
             }
-            case "Trivia": {
+            case "Trivia Game": {
                 TriviaGame triviaGame = (TriviaGame) allPlaces.get(4);
                 if (triviaGame.getEntryFee() > currentUser.getBalance()) {
                     System.out.println("You don't have enough money to enter. ");
