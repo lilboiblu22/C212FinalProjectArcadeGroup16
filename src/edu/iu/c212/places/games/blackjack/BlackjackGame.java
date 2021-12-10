@@ -70,6 +70,7 @@ public class BlackjackGame extends Game {
         frame.add(mainPanel);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.toFront();
 
         isRunning = true;
 
@@ -169,7 +170,6 @@ public class BlackjackGame extends Game {
             hit.setEnabled(false);
             stay.setEnabled(false);
             isRunning = false;
-
         }
     }
 
@@ -187,7 +187,6 @@ public class BlackjackGame extends Game {
                 dealerLabel.setText("Dealer's hand: " + dealer.getBestTotal());
             } else {
                 totalsLabel.setText("Your hand total: " + player.getBestTotal());
-
             }
         }
     }

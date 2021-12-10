@@ -100,7 +100,7 @@ public class Arcade implements IArcade {
         // e.g. switch ("Lobby") should trigger the Lobby object's onEnter()
         // and so on... :-)
         switch (newPlaceNameToGoTo) {
-            case "Lobby": {
+            case "Lobby" -> {
                 // must cast type from interface to class in order to access onEnter()
                 Lobby lobby = (Lobby) allPlaces.get(0);
                 // lobby has no entrance fee but this is what the
@@ -109,93 +109,86 @@ public class Arcade implements IArcade {
                 if (lobby.getEntryFee() > currentUser.getBalance()) {
                     System.out.println("You don't have enough money to enter. ");
                     lobby.onEnter(currentUser);
-                }
-                else {
+                } else {
                     currentUser.removeBalance(lobby.getEntryFee());
                     saveUsersToFile();
                     lobby.onEnter(currentUser);
                 }
                 break;
             }
-            case "Guess the Number": {
+            case "Guess the Number" -> {
                 GuessTheNumberGame guessTheNumberGame = (GuessTheNumberGame) allPlaces.get(1);
                 if (guessTheNumberGame.getEntryFee() > currentUser.getBalance()) {
                     System.out.println("You don't have enough money to enter. ");
                     Lobby lobby = (Lobby) allPlaces.get(0);
                     lobby.onEnter(currentUser);
-                }
-                else {
+                } else {
                     currentUser.removeBalance(guessTheNumberGame.getEntryFee());
                     saveUsersToFile();
                     guessTheNumberGame.onEnter(currentUser);
                 }
                 break;
             }
-            case "Blackjack": {
+            case "Blackjack" -> {
                 BlackjackGame blackjackGame = (BlackjackGame) allPlaces.get(2);
                 if (blackjackGame.getEntryFee() > currentUser.getBalance()) {
                     System.out.println("You don't have enough money to enter. ");
                     Lobby lobby = (Lobby) allPlaces.get(0);
                     lobby.onEnter(currentUser);
                     System.out.println("hi!");
-                }
-                else {
+                } else {
                     currentUser.removeBalance(blackjackGame.getEntryFee());
                     saveUsersToFile();
                     blackjackGame.onEnter(currentUser);
                 }
                 break;
             }
-            case "Hangman": {
+            case "Hangman" -> {
                 HangmanGame hangmanGame = (HangmanGame) allPlaces.get(3);
                 if (hangmanGame.getEntryFee() > currentUser.getBalance()) {
                     System.out.println("You don't have enough money to enter. ");
                     Lobby lobby = (Lobby) allPlaces.get(0);
                     lobby.onEnter(currentUser);
-                }
-                else {
+                } else {
                     currentUser.removeBalance(hangmanGame.getEntryFee());
                     saveUsersToFile();
                     hangmanGame.onEnter(currentUser);
                 }
                 break;
             }
-            case "Trivia Game": {
+            case "Trivia" -> {
                 TriviaGame triviaGame = (TriviaGame) allPlaces.get(4);
                 if (triviaGame.getEntryFee() > currentUser.getBalance()) {
                     System.out.println("You don't have enough money to enter. ");
                     Lobby lobby = (Lobby) allPlaces.get(0);
                     lobby.onEnter(currentUser);
-                }
-                else {
+                } else {
                     currentUser.removeBalance(triviaGame.getEntryFee());
                     saveUsersToFile();
                     triviaGame.onEnter(currentUser);
                 }
                 break;
             }
-            case "Inventory": {
+            case "Inventory" -> {
                 Inventory inventory = (Inventory) allPlaces.get(5);
                 if (inventory.getEntryFee() > currentUser.getBalance()) {
                     System.out.println("You don't have enough money to enter. ");
                     Lobby lobby = (Lobby) allPlaces.get(0);
                     lobby.onEnter(currentUser);
-                }
-                else {
+                } else {
                     currentUser.removeBalance(inventory.getEntryFee());
                     saveUsersToFile();
                     inventory.onEnter(currentUser);
                 }
                 break;
             }
-            case "Store": {
+            case "Store" -> {
                 Store store = (Store) allPlaces.get(6);
                 if (store.getEntryFee() > currentUser.getBalance()) {
                     System.out.println("You don't have enough money to enter. ");
                     Lobby lobby = (Lobby) allPlaces.get(0);
                     lobby.onEnter(currentUser);
-                }
-                else {
+                } else {
                     currentUser.removeBalance(store.getEntryFee());
                     saveUsersToFile();
                     store.onEnter(currentUser);
@@ -222,7 +215,7 @@ public class Arcade implements IArcade {
         }
         // if they are a new user, make a new user and add it to allUsers and save users.
         // then return the user.
-        User user = new User(name, 100, new ArrayList<>());
+        User user = new User(name, 100);
         allUsers.add(user);
         saveUsersToFile();
         return user;
