@@ -42,7 +42,7 @@ public class BlackjackPlayer extends BlackjackParticipant {
             }
         }
 
-
+        System.out.println(handTotals[0]);
         }
     }
 

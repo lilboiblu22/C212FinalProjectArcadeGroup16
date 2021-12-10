@@ -30,6 +30,7 @@ public class BlackjackDealer extends BlackjackParticipant {
             shownCard = addNum;
             firstCard = false;
         }
+        System.out.println(handTotals[0]);
 
     }
 
